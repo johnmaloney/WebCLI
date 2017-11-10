@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCLI.Core
+namespace WebCLI.Core.Server.Interfaces
 {
-    public class Class1
+    public interface ICommandCriteria
+    {
+    }
+
+    public interface ICommandResult
     {
     }
 }
