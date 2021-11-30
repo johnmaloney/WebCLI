@@ -24,6 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -129,9 +130,9 @@
     <Folder Include="js\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebCLI.Core\WebCLI.Core.csproj">
+    <ProjectReference Include="..\WebCLI.Core\WebCLI.Core.Legacy.csproj">
       <Project>{94c475ca-e42f-44ff-aba2-2d20832458d5}</Project>
-      <Name>WebCLI.Core</Name>
+      <Name>WebCLI.Core.Legacy</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
