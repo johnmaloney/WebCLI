@@ -26,7 +26,7 @@ namespace WCLI.Core.Contracts
         /// <summary>
         /// Environmental variables related to each specific servers urls. 
         /// </summary>
-        IEnvironmentalInfo this[string environment] { get; }
+        IEnvironmentInfo this[string environment] { get; }
 
         /// <summary>
         /// Returns the available environment names.
@@ -35,7 +35,6 @@ namespace WCLI.Core.Contracts
 
         IAuthContext GetDefaultAuthContext();
 
-        void AddEnvironment(string environmentName, IEnvironmentalInfo environment);
+        void AddEnvironment(string environmentName, IEnvironmentInfo environment);
     }
-}
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WCLI.Core.Contracts
 {
-    interface IEnvironmentInfo
+    public interface IEnvironmentInfo
     { 
         #region Fields
 

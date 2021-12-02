@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WCLI.Core.Contracts
+namespace WebCLI.Core.Contracts
 {
-    public interface IAuthContext
+    public interface IQueryCriteria
     {
+        string Name { get; }
     }
 }

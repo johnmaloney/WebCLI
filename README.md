@@ -7,3 +7,12 @@ This is a web based console that can be extended by adding project specific comm
     - Command Metadata - data about the command including samples and documentation
     - Environments - differing environments to execute commands within e.g. prod, staging, dev
     - 
+
+### Commands and Queries
+#### Commands
+Represent the actions that a user can execute to alter the system or the data stored in the runtime of the WebCLI. 
+An example would be the altering of the current environment variables or authentication credentials.
+
+#### Queries
+Represent actions that the user would like to execute to retrieve that state of something, this can include
+executing SQL, altering a set of text or retrieving data from a service endpoint.
