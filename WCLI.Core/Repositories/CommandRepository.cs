@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.Net.Mime;
 using WebCLI.Core.Contracts;
 
 namespace WebCLI.Core.Repositories
@@ -8,17 +10,19 @@ namespace WebCLI.Core.Repositories
     {
         #region Fields
 
-        private readonly ConcurrentDictionary<string, Func<ICommandCriteria, ICommandResult>> commandActions;
+        private Dictionary<string, PipelineInitializer> pipelineInitializers =
+            new Dictionary<string, PipelineInitializer>();
+        private readonly ConcurrentDictionary<string, Func<IContext, IPipe>> commandActions;
 
         #endregion
 
         #region Properties
 
-        public ICommandResult this[ICommandCriteria criteria]
+        public IPipe this[IContext context]
         {
             get
             {
-                return this.commandActions[criteria.Name.ToLowerInvariant()](criteria);
+                return this.commandActions[context.Identifier.ToLowerInvariant()](context);
             }
         }
 
@@ -28,12 +32,32 @@ namespace WebCLI.Core.Repositories
 
         public CommandRepository()
         {
-            commandActions = new ConcurrentDictionary<string, Func<ICommandCriteria, ICommandResult>>();
+            commandActions = new ConcurrentDictionary<string, Func<IContext, IPipe>>();
         }
 
-        public void AddCommandDelegate(string commandName, Func<ICommandCriteria, ICommandResult> actionDelegate)
+        public void AddCommandDelegate(string identifier, 
+            Func<IContext, IPipe> actionDelegate)
         {
-            commandActions.AddOrUpdate(commandName, actionDelegate, (cmdName, action) => action = actionDelegate);
+            commandActions.AddOrUpdate(
+                identifier.ToLowerInvariant(), actionDelegate, 
+                (cmdName, action) => action = actionDelegate);
+        }
+
+        #endregion
+
+        #region Private Classes
+
+        private class PipelineInitializer
+        {
+            public Func<IPipe> PipeInitializer { get; set; }
+
+            public Func<
+                string, 
+                object, 
+                string[], 
+                Dictionary<string, object>, 
+                IContext>
+                ContextInitializer { get; set; }
         }
 
         #endregion

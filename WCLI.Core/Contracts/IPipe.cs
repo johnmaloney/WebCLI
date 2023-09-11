@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace WebCLI.Core.Contracts
 {
-    public interface IQueryCriteria : ICriteria
+    public interface IPipe
     {
+        IPipe NextPipe { get; }
+
+        IPipe ExtendWith(IPipe pipe);
+
+        Task Process(IContext context);
     }
 }

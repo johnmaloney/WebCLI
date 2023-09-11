@@ -8,7 +8,7 @@ namespace WebCLI.Core.Contracts
 {
     public interface ICommandRepository
     {
-        ICommandResult this[ICommandCriteria criteria] { get; }
-        void AddCommandDelegate(string commandName, Func<ICommandCriteria, ICommandResult> actionDelegate);
+        IPipe this[IContext criteria] { get; }
+        void AddCommandDelegate(string identifier, Func<IContext, IPipe> actionDelegate);
     }
 }

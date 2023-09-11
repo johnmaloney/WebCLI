@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebCLI.Core.Contracts
+namespace WebCLI.Core.Models
 {
-    public interface IQueryCriteria : ICriteria
+    internal class Query
     {
     }
 }

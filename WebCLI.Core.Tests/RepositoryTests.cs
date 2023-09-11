@@ -1,6 +1,9 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using WebCLI.Core.Contracts;
+using WebCLI.Core.Pipes;
 using WebCLI.Core.Repositories;
+using WebCLI.Core.Tests.Pipes;
 
 namespace WebCLI.Core.Tests
 {
@@ -17,9 +20,9 @@ namespace WebCLI.Core.Tests
                     return null;
                 });
 
-            var criteria = new MockCommandCriteria();
+            var context = new GeneralContext(null, null) { Identifier = "mock" };
 
-            Assert.IsNull(repo[criteria]);
+            Assert.IsNull(repo[context]);
         }
 
         [TestMethod]
@@ -29,18 +32,27 @@ namespace WebCLI.Core.Tests
             repo.AddCommandDelegate("mock",
                 (criteria) =>
                 {
-                    return new MockCommandResult();
+                    return new PlusOnePipe();
                 });
 
-            var criteria = new MockCommandCriteria();
+            var context = new GeneralContext(null, null) { Identifier = "mock" };
 
-            Assert.IsNotNull(repo[criteria]);
+            Assert.IsNotNull(repo[context]);
         }
     }
 
-    internal class MockCommandCriteria : ICommandCriteria
+    internal class MockCommandCriteria : ICriteria
     {
-        public string Name => "Mock";
+        public string Identifier => "Mock";
+
+        public string CommandDirective { get; set; }
+        public string[] Arguments { get; set; }
+        public Dictionary<string, object> Options { get; set; }
+
+        public IPipe GetPipeline(IPipe parentPipeline)
+        {
+            return null;
+        }
     }
 
     internal class MockCommandResult : ICommandResult

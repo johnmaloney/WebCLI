@@ -1,0 +1,21 @@
+[
+  {
+    "identifier": "AddOneDouble",
+    "command": "plusonedouble",
+    "query": "",
+    "descriptor": "Add 1 to the value given",
+    "commandPipeGroups": {
+      "1": [ "WebCLI.Core.Tests, WebCLI.Core.Tests.Pipes.PlusOnePipe" ],
+      "2": [ "WebCLI.Core.Tests, WebCLI.Core.Tests.Pipes.DoubleValuePipe" ]
+    }
+  },
+  {
+    "identifier": "DoubleValue",
+    "command": "doublevalue",
+    "query": "",
+    "descriptor": "Multiply the current value by 2",
+    "commandPipeGroups": {
+      "1": [ "WebCLI.Core.Tests, WebCLI.Core.Tests.Pipes.DoubleValuePipe" ]
+    }
+  }
+]
