@@ -38,5 +38,10 @@ namespace WebCLI.Core.Models
             }
             return parentPipe;
         }
+
+        public static Criteria CreateCriteria(string jsonData) 
+        {
+            return null;
+        }
     }
 }

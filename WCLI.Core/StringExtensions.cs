@@ -32,5 +32,42 @@ namespace WebCLI.Core
             var values = Regex.Split(value, splitCharacter);
             return values.First();
         }
+
+        /// <summary>
+        /// Takes a dynamic object and checks to see if there is a node by the param passed.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="nodeName"></param>
+        /// <returns></returns>
+        public static bool Has(dynamic item, string nodeName)
+        {
+            if (item == null) return false;
+            if (string.IsNullOrEmpty(nodeName)) return false;
+
+            if (!item.ContainsKey(nodeName)) return false;
+            return true;
+        }
+
+
+        /// <summary>
+        /// Takes a dynamic object and checks to see if there is a node by the param passed.
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="nodeName"></param>
+        /// <returns></returns>
+        public static bool HasCollection(dynamic item, int location)
+        {
+            if (item == null) return false;
+
+            try
+            {
+                if (item[location] != null) return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

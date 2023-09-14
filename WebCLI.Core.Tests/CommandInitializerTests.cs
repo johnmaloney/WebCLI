@@ -10,6 +10,7 @@ using WebCLI.Core.Pipes;
 using WebCLI.Core.Repositories;
 using WebCLI.Core.Tests.Base;
 
+
 namespace WebCLI.Core.Tests
 {
     [TestClass]
@@ -21,7 +22,27 @@ namespace WebCLI.Core.Tests
             var deserializer = new DeserializerStrategy("\\Data\\");
             var data = deserializer.Into<dynamic>("scenario1");
 
-            var split = ((string)data["commandPipeType"]).Split(',');
+            string[] split = null; 
+            //data[0]["commandPipeGroups"]["1"].ToString().Split(',')[1]
+            if (data != null)
+            {
+                if (StringExtensions.Has(data[0], "commandPipeGroups"))
+                {
+                    if (StringExtensions.Has(data[0]["commandPipeGroups"], "1"))
+                    {
+                        string items = data[0]["commandPipeGroups"]["1"].ToString();
+                        items = items.Replace("\n", string.Empty);
+                        items = items.Replace("\r",string.Empty);
+                        items = items.Replace("\\", string.Empty);
+                        items = items.Replace("]", string.Empty);
+                        items = items.Replace("[", string.Empty);
+                        items = items.Replace(" ", string.Empty);
+                        items = items.Replace("\"", string.Empty);
+                        split = items.Split(',');
+                    }
+                }
+            }
+
             var plus = Activator.CreateInstance(split[0], split[1]);
             var instance = plus.Unwrap();
             Assert.IsNotNull(data);

@@ -30,5 +30,12 @@ namespace WebCLI.Core.Tests
 
             var pipe = commands[new GeneralContext(null, null) { Identifier = "addone" }];
         }
+
+        [TestMethod]
+        public async Task parse_criteria_with_nested_pipes_expect_ordered_pipeline()
+        {
+            // This will test the building of a nested pipeline based on the defined order in the json //
+
+        }
     }
 }

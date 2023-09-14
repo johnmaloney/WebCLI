@@ -1,0 +1,13 @@
+[
+  {
+    "identifier": "AddOneDouble",
+    "command": "plusonedouble",
+    "query": "",
+    "descriptor": "Add 1 to the value given",
+    "commandPipeGroups": {
+      "1": [ "WebCLI.Core.Tests, WebCLI.Core.Tests.Pipes.PlusOnePipe" ],
+      "1.1": [ "WebCLI.Core.Tests, WebCLI.Core.Tests.Pipes.DoubleValuePipe" ],
+      "1.2": [ "WebCLI.Core.Tests, WebCLI.Core.Tests.Pipes.DoubleValuePipe" ]
+    }
+  }
+]
